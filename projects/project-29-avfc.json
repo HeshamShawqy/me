@@ -20,8 +20,8 @@
         "media": [
             {
                 "type": "image",
-                "src": "https://res.cloudinary.com/dnahwqvhd/image/upload/w_1200,f_auto,q_auto/v1764549073/251110_facade_lean_tests_20251113_162940_2_output_tskfwg.png",
-                "caption": "AI-enhanced human-eye rendering of the stadium envelope",
+                "src": "https://res.cloudinary.com/dnahwqvhd/image/upload/w_1200,f_auto,q_auto/v1764549074/ViewCapture20251130_222432_c3xqv0.png",
+                "caption": "Stadium layout and surrounding heat points",
                 "position": "after-paragraph-0"
             },
             {
@@ -29,12 +29,6 @@
                 "src": "https://res.cloudinary.com/dnahwqvhd/video/upload/w_1200,f_auto,q_auto/v1764549075/layering_on9igr.mp4",
                 "caption": "Envelope tesselation system weaving logic",
                 "position": "after-paragraph-0"
-            },
-            {
-                "type": "image",
-                "src": "https://res.cloudinary.com/dnahwqvhd/image/upload/w_1200,f_auto,q_auto/v1764549074/ViewCapture20251130_222432_c3xqv0.png",
-                "caption": "Stadium layout and surrounding heat points",
-                "position": "after-paragraph-1"
             },
             {
                 "type": "image",
