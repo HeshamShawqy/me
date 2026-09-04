@@ -2,15 +2,21 @@
     "profile": {
         "image": "https://res.cloudinary.com/dnahwqvhd/image/upload/w_800,f_auto,q_auto/v1762108615/Hesham_Shawqy_cb1kih.jpg",
         "name": "Hesham Shawqy",
-        "title": "Computational Designer",
+        "title": "Senior Computational Designer",
         "bio": [
-            "Hesham Shawqy is an architect and computational designer specializing in computational design, artificial intelligence, and web development. Currently serving as Computational Design Specialist at Grimshaw, London, he also leads the Complex Forming seminar as part of the MACAD program at IAAC (Institute for Advanced Architecture of Catalonia).",
+            "Hesham Shawqy is an architect and computational designer specializing in computational design, artificial intelligence, and web development. Currently serving as Senior Computational Designer at Heatherwick Studio, London, focusing on facade engineering, built environments, complex geometry, and rationalization, he also leads the Complex Forming seminar as part of the MACAD program at IAAC (Institute for Advanced Architecture of Catalonia).",
             "He earned his Master's degree in Advanced Computation for Architecture & Design in 2021, with research interests centered on digitizing handcrafts through machine learning and robotic fabrication. His diverse portfolio spans product design, historical documentation, urban development, museum exhibits, and housing projects."
         ]
     },
     "experience": [
         {
-            "year": "2022 – Present",
+            "year": "2026 – Present",
+            "company": "Heatherwick Studio, London",
+            "role": "Senior Computational Designer",
+            "description": "Focusing on facade engineering, built environments, complex geometry, and rationalization."
+        },
+        {
+            "year": "2022 – 2026",
             "company": "Grimshaw Architects, London",
             "role": "Computational Design Specialist",
             "description": "Developing parametric design tools, defining computational workflows, and leading training programs for complex large-scale projects."

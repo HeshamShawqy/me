@@ -36,8 +36,42 @@ const CATEGORIES = ['Form Finding', 'Machine Learning', 'Tessellation Systems', 
 let selectedCategory = null;
 let allProjects = [];
 
+// Render a placeholder grid while project data is loading
+function renderGallerySkeleton() {
+    const contentView = document.getElementById('contentView');
+    if (!contentView) return;
+
+    injectGalleryStyles();
+
+    const skeletonCards = Array.from({ length: 6 }).map(() => `
+        <div class="gallery-card skeleton">
+            <div class="gallery-card-image skeleton-block"></div>
+            <div class="gallery-card-content">
+                <div class="skeleton-block skeleton-line skeleton-line-title"></div>
+                <div class="skeleton-block skeleton-line skeleton-line-meta"></div>
+                <div class="skeleton-block skeleton-line skeleton-line-desc"></div>
+            </div>
+        </div>
+    `).join('');
+
+    contentView.innerHTML = `
+        <div class="content-article">
+            <div class="content-header">
+                <h1 class="content-title">Gallery</h1>
+                <div class="content-meta">
+                    <span>A visual collection of all projects</span>
+                </div>
+            </div>
+            <div class="gallery-grid">
+                ${skeletonCards}
+            </div>
+        </div>
+    `;
+}
+
 // Initialize gallery view
 async function initGallery() {
+    renderGallerySkeleton();
     try {
         // Load projects index
         const response = await fetch('projects/index.json');
@@ -96,12 +130,12 @@ function renderGallery(projects) {
         
         galleryHTML += `
             <div class="gallery-card ${isVisible ? '' : 'hidden'}" data-project-id="${project.id}" data-categories="${categories.join(',')}">
-                <div class="gallery-card-image">
-                    ${isVideo ? 
-                        `<video autoplay loop muted playsinline>
+                <div class="gallery-card-image media-loading">
+                    ${isVideo ?
+                        `<video autoplay loop muted playsinline onloadeddata="this.closest('.gallery-card-image').classList.remove('media-loading')" onerror="this.closest('.gallery-card-image').classList.remove('media-loading')">
                             <source src="${project.previewImage}" type="video/mp4">
                         </video>` :
-                        `<img src="${project.previewImage}" alt="${project.title}" loading="lazy">`
+                        `<img src="${project.previewImage}" alt="${project.title}" loading="lazy" onload="this.closest('.gallery-card-image').classList.remove('media-loading')" onerror="this.closest('.gallery-card-image').classList.remove('media-loading')">`
                     }
                 </div>
                 <div class="gallery-card-content">
@@ -240,7 +274,59 @@ function injectGalleryStyles() {
         .gallery-card.hidden {
             display: none;
         }
-        
+
+        .gallery-card.skeleton {
+            cursor: default;
+            box-shadow: none;
+        }
+
+        .skeleton-block {
+            position: relative;
+            overflow: hidden;
+            background: #eeeeee;
+        }
+
+        .skeleton-block::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            transform: translateX(-100%);
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: gallery-shimmer 1.4s ease-in-out infinite;
+        }
+
+        @keyframes gallery-shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .skeleton-line {
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .skeleton-line-title {
+            height: 20px;
+            width: 70%;
+        }
+
+        .skeleton-line-meta {
+            height: 14px;
+            width: 40%;
+        }
+
+        .skeleton-line-desc {
+            height: 14px;
+            width: 90%;
+            margin-bottom: 0;
+        }
+
         @media (max-width: 1024px) {
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -282,9 +368,35 @@ function injectGalleryStyles() {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            opacity: 1;
+            transition: transform 0.3s ease, opacity 0.4s ease;
         }
-        
+
+        .gallery-card-image.media-loading img,
+        .gallery-card-image.media-loading video {
+            opacity: 0;
+        }
+
+        .gallery-card-image.media-loading {
+            position: relative;
+            background: #eeeeee;
+            overflow: hidden;
+        }
+
+        .gallery-card-image.media-loading::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            transform: translateX(-100%);
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: gallery-shimmer 1.4s ease-in-out infinite;
+        }
+
         .gallery-card:hover .gallery-card-image img,
         .gallery-card:hover .gallery-card-image video {
             transform: scale(1.05);

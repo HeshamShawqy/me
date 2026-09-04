@@ -304,7 +304,10 @@ function handleProjectClick(project, element) {
     const allProjectItems = document.querySelectorAll('.project-item');
     allProjectItems.forEach(item => item.classList.remove('active'));
     element.classList.add('active');
-    
+
+    // Bring the active card into view within the sidebar
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
     // Hide landing animation when viewing project details
     const landing = document.getElementById('landingAnimation');
     const landingContent = document.getElementById('landingContent');
@@ -490,8 +493,8 @@ navLinks.forEach(link => {
         const section = link.getAttribute('href').substring(1);
         
         // Handle different sections
-        if (section === 'work') {
-            // Show work section - back to landing
+        if (section === 'home') {
+            // Show home section - back to landing
             // First, fade out and hide any existing content
             contentView.style.opacity = '0';
             contentView.classList.remove('active');
@@ -600,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize the landing animation
     initLandingAnimation();
-    
-    // Show landing animation by default
-    showLandingAnimation();
+
+    // Show Gallery by default
+    showGallery();
 });
