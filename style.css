@@ -132,12 +132,15 @@ a {
     overflow-y: auto;
     padding-right: 10px;
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 .project-item {
     padding: 0;
     border-radius: 12px;
     cursor: pointer;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
